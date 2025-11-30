@@ -1,0 +1,282 @@
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
+
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    // Simulate form submission
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      
+      setTimeout(() => {
+        setSubmitStatus(null);
+      }, 3000);
+    }, 1000);
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
+  return (
+    <section id="contact" className="section-padding bg-neutral-50 dark:bg-neutral-900/50">
+      <div className="container-custom">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <motion.div variants={itemVariants} className="text-center mb-8 sm:mb-12 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-neutral-900 dark:text-white mb-4">
+              Get In Touch
+            </h2>
+            <div className="w-24 h-1 gradient-primary mx-auto mb-4 sm:mb-6 rounded-full"></div>
+            <p className="text-base sm:text-lg text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto px-4 sm:px-0">
+              Have a project in mind or want to collaborate? I'd love to hear
+              from you. Let's create something amazing together.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+            {/* Contact Information */}
+            <motion.div variants={itemVariants}>
+              <h3 className="text-2xl font-display font-bold text-neutral-900 dark:text-white mb-6">
+                Let's Connect
+              </h3>
+              <p className="text-neutral-600 dark:text-neutral-400 mb-8">
+                I'm always open to discussing new projects, creative ideas, or
+                opportunities to be part of your visions. Feel free to reach out
+                through any of the channels below.
+              </p>
+
+              <div className="space-y-6 mb-8">
+                <motion.a
+                  href="mailto:burhanaslam944@gmail.com"
+                  className="flex items-center gap-4 text-neutral-700 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors group"
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center group-hover:bg-primary-600 dark:group-hover:bg-primary-600 transition-colors">
+                    <FaEnvelope className="text-primary-600 dark:text-primary-400 group-hover:text-white transition-colors" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-neutral-900 dark:text-white">Email</p>
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">burhanaslam944@gmail.com</p>
+                  </div>
+                </motion.a>
+
+                <motion.a
+                  href="tel:+923212786156"
+                  className="flex items-center gap-4 text-neutral-700 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors group"
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center group-hover:bg-primary-600 dark:group-hover:bg-primary-600 transition-colors">
+                    <FaPhone className="text-primary-600 dark:text-primary-400 group-hover:text-white transition-colors" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-neutral-900 dark:text-white">Phone</p>
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">+92 321 2786156</p>
+                  </div>
+                </motion.a>
+
+                <div className="flex items-center gap-4 text-neutral-700 dark:text-neutral-300 group">
+                  <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center">
+                    <FaMapMarkerAlt className="text-primary-600 dark:text-primary-400" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-neutral-900 dark:text-white">Location</p>
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">Islamabad, Pakistan</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <p className="font-semibold text-neutral-900 dark:text-white mb-4">Follow Me</p>
+                <div className="flex gap-4">
+                  <motion.a
+                    href="https://www.linkedin.com/in/burhan-aslam/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-magnetic
+                    className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white transition-colors"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <FaLinkedin />
+                  </motion.a>
+                  <motion.a
+                    href="https://github.com/BurhanAslam-git"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-magnetic
+                    className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white transition-colors"
+                    whileHover={{ scale: 1.1, rotate: -5 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <FaGithub />
+                  </motion.a>
+                  <motion.a
+                    href="https://twitter.com/burhanaslam"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-magnetic
+                    className="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center text-primary-600 hover:bg-primary-600 hover:text-white transition-colors"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <FaTwitter />
+                  </motion.a>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Contact Form */}
+            <motion.div variants={itemVariants}>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2"
+                  >
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                    placeholder="Your Name"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2"
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2"
+                  >
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                    placeholder="What's this about?"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2"
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows="6"
+                    className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all resize-none text-neutral-900 dark:text-white placeholder-neutral-500 dark:placeholder-neutral-400"
+                    placeholder="Tell me about your project or just say hello!"
+                  ></textarea>
+                </div>
+
+                <motion.button
+                  type="submit"
+                  disabled={isSubmitting}
+                  data-magnetic
+                  className="w-full px-8 py-3 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </motion.button>
+
+                {submitStatus === 'success' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700"
+                  >
+                    Message sent successfully! I'll get back to you soon.
+                  </motion.div>
+                )}
+              </form>
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default Contact;
+
