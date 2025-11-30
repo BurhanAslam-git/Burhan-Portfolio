@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Portfolio Website
 
 A modern, premium, and responsive portfolio website built with React, Vite, and Tailwind CSS. Features glassmorphism design, dark mode support, and smooth animations.
@@ -113,3 +114,7 @@ This project can be easily deployed to:
 
 MIT
 
+=======
+# Burhan-Portfolio
+This repository contains the source code for my personal portfolio website. It showcases my skills, projects, achievements, and professional journey in software engineering. I will continuously update it with new projects and improvements as I grow.
+>>>>>>> f8bec291fcc1566342de32db45f26874710956af
